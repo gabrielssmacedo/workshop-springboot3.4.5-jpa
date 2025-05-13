@@ -2,7 +2,6 @@ package com.gabrielssmacedo.course.entities;
 
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -11,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
@@ -28,6 +28,8 @@ public class Product implements Serializable {
 	private Double price;
 	private String imgUrl;
 	
+	@ManyToMany
+	@JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "Product_id"), inverseJoinColumns = @JoinColumn(name = "Category_id"))
 	Set<Category> categories = new HashSet<>();
 	
 	public Product() {
