@@ -80,7 +80,7 @@ public class Order implements Serializable{
 			this.orderStatus = orderStatus.getCode();			
 		}
 	}
-
+	
 	public User getClient() {
 		return client;
 	}
@@ -99,6 +99,15 @@ public class Order implements Serializable{
 
 	public Set<OrderItem> getItems() {
 		return items;
+	}
+	
+	public Double getTotal() {
+		double sum = 0.0;
+		
+		for(OrderItem item : items) {
+			sum += item.getSubTotal();
+		}
+		return sum;
 	}
 	
 	@Override
